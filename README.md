@@ -1,3 +1,49 @@
+## 概览
+
+```
+PrivacyNER_with_NoisyData_CCF
+|
+├─ config.py
+├─ preprocess.py
+├─ main.py
+├─ set_env.sh
+├─ requirements.txt
+├─ data
+│  ├─ addition
+│  ├─ dataset.py
+│  └─ origin
+├─ model
+│  ├─ advTrain.py
+│  ├─ layers
+│  │  ├─ attention.py
+│  │  ├─ encoder.py
+│  │  ├─ flat.py
+│  │  ├─ position.py
+│  │  └─ structuredOut.py
+│  ├─ model.py
+│  ├─ mymodel.py
+│  └─ trainer.py
+├─ notebook
+│  ├─ data_aug_nlpcda.ipynb
+│  ├─ eda.ipynb
+│  ├─ paddleNLP工具.ipynb
+│  ├─ regex.ipynb
+│  └─ traditional_model.ipynb
+└─ utils
+   ├─ callbacks
+   │  └─ earlystop.py
+   ├─ postprocess
+   │  ├─ process.py
+   │  └─ selfsupervise.py
+   ├─ preprocess
+   │  ├─ format.py
+   │  ├─ process.py
+   │  └─ tokenizer.py
+   └─ tools.py
+```
+
+
+
 ## 模型
 
 ### FLAT
@@ -287,6 +333,10 @@ class MultiHeadAttention(nn.Module):
 >
 > 6. 重复以上步骤，直到Dict不再改变。
 
+方法是这么个方法，实际上代码并没有如此实现😅。代码里面的 loss mask 的使用方式，使用多个k flod 的子模型重新对训练数据进行预测投票，并删除得票数少于阈值的标记。目的是为了减少噪声数据。这和我查到的PU learning的思想是不一致的。
+
+另外，这种投票的方法可以用在 test data 中，但是是提取 得票数高于阈值的 样例和预测标记。加到训练数据中，如此这般 半监督学习，是不是更nice？嗯，想法不错。
+
 
 
 ### FGM
@@ -525,3 +575,5 @@ optimizer.swap_swa_sgd()
 参考链接：
 
 [2020CCF-NER](https://github.com/BaberMuyu/2020CCF-NER)
+
+[Flat-Lattice-Transformer](https://github.com/LeeSureman/Flat-Lattice-Transformer)
