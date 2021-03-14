@@ -1,5 +1,16 @@
 ## 概览
 
+![image-20210314114018794](pic/README_pic/image-20210314114018794.png)
+
+模型结构上对结果影响较大的地方有：
+
+1. BERT 提取的特征和word embedding 组合时，需要对应 Head & Tail position，同时加一层 layer norm，收敛速度会加快。
+2. 由于是一层FLAT结构，FLAT的输出和输入的关联比较直接，需要将输入中pad的位置，mask为 0，效果会有一点提升。
+
+
+
+另外可以试试Relative Position Encoding的不同融合方式。
+
 ```
 PrivacyNER_with_NoisyData_CCF
 |
