@@ -87,7 +87,7 @@ class Trainer:
         learning_schedual = get_linear_schedule_with_warmup(
             optimizer,
             len(train_dataloader) // Config.batch_size // 2,
-            (len(train_dataloader) // Config.batch_size + 1) * Config.epochs)
+            len(train_dataloader) * Config.epochs)
         # 对抗训练
         fgm = FGM(model)
 
