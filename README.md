@@ -227,7 +227,7 @@ class MultiHeadAttention(nn.Module):
 
 ### CRF
 
-参考 https://racleray.github.io/2020/11/18/CRF-SimpleNote/, https://racleray.github.io/2021/02/22/%E6%B5%85%E6%B6%89%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/
+参考 https://racleray.space/posts/798499bc.html, https://racleray.space/posts/6a1e61f5.html#%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB-1
 
 
 
